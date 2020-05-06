@@ -27,3 +27,36 @@ Overview of what tools (not which version) to expect for each base tag name:
 | Azure CLI                |        |             |        |   X   |
 | `kafkacat`               |        |             |        |   X   |
 | `python`                 |        |             |        |   X   |
+
+
+
+toolbox-debian:terraform-awscli-0.1
+toolbox-debian:minimal-awscli-0.1.1
+toolbox-debian:full-awstools-0.1.1
+toolbox-debian:eks-0.1.1
+
+toolbox-powershell:
+toolbox-python:
+toolbox-go:
+
+
+|   X   |   Y   |   Z   |
+| :---: | :---: | :---: |
+|       |       |       |
+
+
+
+| Tool                     | `$base-terraform` | `$base-slim-awscli` | `pwsh-slim-awstools` | `$base-full-awscli` | `$base-full-awstools` |      `eks`      | `aws-account` |
+| ------------------------ | :---------------: | :-----------------: | :------------------: | :-----------------: | :-------------------: | :-------------: | :-----------: |
+| Base                     |   deb/pwsh/pyt    |   $base-terraform   |    pwsh-terraform    |  $base-slim-awscli  |  pwsh-slim-awstools   | deb-full-awscli |      TBD      |
+| AWS CLI                  |                   |          X          |                      |                     |                       |                 |               |
+| AWS Tools for PowerShell |                   |                     |          X           |                     |                       |                 |               |
+| `terraform`              |         X         |                     |                      |                     |                       |                 |               |
+| `terragrunt`             |         X         |                     |                      |                     |                       |                 |               |
+| `kubectl`                |                   |                     |                      |          X          |           X           |                 |               |
+| `saml2aws`               |                   |                     |                      |          X          |           X           |                 |               |
+| `aws-iam-authenticator`  |                   |                     |                      |          X          |           X           |                 |               |
+| `helm`                   |                   |                     |                      |          X          |           X           |                 |               |
+| Azure CLI                |                   |                     |                      |                     |                       |        X        |               |
+| `kafkacat`               |                   |                     |                      |                     |                       |        X        |               |
+| `python`                 |                   |                     |                      |                     |                       |        X        |               |
