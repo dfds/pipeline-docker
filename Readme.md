@@ -1,17 +1,10 @@
 # DFDS Development Excellence Toolbox images
 
-## Currently maintained tags
+## How to build
 
-| Tag               | Base                                            | Description                      |
-| ----------------- | ----------------------------------------------- | -------------------------------- |
-| `debian-slim`     | debian:buster-slim                              | Replaces `pre-prime` and `prime` |
-| `powershell-slim` | mcr.microsoft.com/powershell:debian-buster-slim |                                  |
-| `python-slim`     | python:slim-buster                              |                                  |
-| `debian-full`     | debian:buster-slim                              |                                  |
-| `powershell-full` | mcr.microsoft.com/powershell:debian-buster-slim |                                  |
-| `python-full`     | python:slim-buster                              |                                  |
-| `eks`             | debian:buster-slim                              |                                  |
-
+```shell
+docker build -t "name:tag"  --build-arg APP_IMAGE="$image" --build-arg TOOLBOX_IMAGE="$TOOLBOX_IMAGE" folder/type
+```
 
 ## Tools included
 
