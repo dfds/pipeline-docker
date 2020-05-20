@@ -2,8 +2,22 @@
 
 ## How to build
 
+To build the toolbox image, run:
+
 ```shell
-docker build -t "name:tag"  --build-arg APP_IMAGE="$image" --build-arg TOOLBOX_IMAGE="$TOOLBOX_IMAGE" folder/type
+docker build -t "toolbox:0.1" toolbox/
+```
+
+To build an image by hand run the following command
+
+```shell
+docker build -t "name:tag"  --build-arg APP_IMAGE="$APP_IMAGE" --build-arg TOOLBOX_IMAGE="$TOOLBOX_IMAGE" folder/type
+```
+
+For example:
+
+```shell
+docker build -t "build:alpine-full-0.1.1"  --build-arg APP_IMAGE="alpine:3.11" --build-arg TOOLBOX_IMAGE="toolbox:0.1" alpine/full
 ```
 
 ## Tools included

@@ -24,10 +24,10 @@
 
 #--------[Params]---------------
 Param(
-  [parameter(Mandatory=$True,ValueFromPipeline=$true)] 
+  [parameter(Mandatory = $True, ValueFromPipeline = $true)] 
   [string]$ToolboxName = "toolbox",
 
-  [parameter(Mandatory=$True,ValueFromPipeline=$true)] 
+  [parameter(Mandatory = $True, ValueFromPipeline = $true)] 
   [string]$ToolboxVersion = "v1"
 )
 
@@ -37,7 +37,50 @@ Param(
 
 #--------[Script]---------------
 
-docker build -t "$($ToolboxName):$($ToolboxVersion)" toolbox/
 
 
-#docker build -t "$basetag$tag-slim" -f "slim/Dockerfile" --build-arg APP_IMAGE="$image" --build-arg TOOLBOX_IMAGE="$TOOLBOX_IMAGE"
+function Build-ToolboxImage {
+  Param(
+    [parameter(Mandatory = $false, ValueFromPipeline = $true)] 
+    [string]$ToolboxName = "toolbox",
+
+    [parameter(Mandatory = $false, ValueFromPipeline = $true)] 
+    [string]$ToolboxVersion = "v1"
+  )
+
+  $ToolboxImage = "$($ToolboxName):$($ToolboxVersion)"
+  docker build -t $ToolboxImage toolbox/
+}
+
+
+function Build-DistributionImages {
+  Param(
+    [parameter(Mandatory = $false, ValueFromPipeline = $true)] 
+    [string]$ToolboxName = "toolbox",
+
+    [parameter(Mandatory = $false, ValueFromPipeline = $true)] 
+    [string]$ToolboxVersion = "v1",
+
+    [parameter(Mandatory = $false, ValueFromPipeline = $true)] 
+    [string]$AppImage,
+
+    [parameter(Mandatory = $false, ValueFromPipeline = $true)] 
+    [string]$Distribution
+
+  )
+
+  begin {
+
+    $BuildPaths = Get-ChildItem -Path $Distribution
+    $ToolboxImage = "$($ToolboxName):$($ToolboxVersion)"
+  }
+  process {
+    foreach ($BuildPath in $BuildPaths) {
+      docker build -t "$($Distribution)-$($BuildPath.Name):" --build-arg APP_IMAGE="$AppImage" --build-arg TOOLBOX_IMAGE="$ToolboxImage" $BuildPath.FullName
+    }
+  }
+
+  end {
+
+  }
+}
